@@ -73,8 +73,8 @@ enum UsercallHandleData {
 
 type EnclaveResult = StdResult<(u64, u64), EnclaveAbort<Option<EnclavePanic>>>;
 
-struct ReadOnly<R>(Pin<Box<R>>);
-struct WriteOnly<W>(Pin<Box<W>>);
+pub(crate) struct ReadOnly(pub(crate) Pin<Box<dyn AsyncRead + Send + Sync + 'static>>);
+pub(crate) struct WriteOnly(pub(crate) Pin<Box<dyn AsyncWrite + Send + Sync + 'static>>);
 
 macro_rules! forward {
     (fn $n:ident(mut self: Pin<&mut Self> $(, $p:ident : $t:ty)*) -> $ret:ty) => {
@@ -84,17 +84,17 @@ macro_rules! forward {
     }
 }
 
-impl<R: std::marker::Unpin + AsyncRead> AsyncRead for ReadOnly<R> {
+impl AsyncRead for ReadOnly {
     forward!(fn poll_read(mut self: Pin<&mut Self>, cx: &mut Context, buf: &mut ReadBuf) -> Poll<tokio::io::Result<()>>);
 }
 
-impl<T> AsyncRead for WriteOnly<T> {
+impl AsyncRead for WriteOnly {
     fn poll_read(self: Pin<&mut Self>, _cx: &mut Context, _buf: &mut ReadBuf) -> Poll<tokio::io::Result<()>> {
         Poll::Ready(Err(IoErrorKind::BrokenPipe.into()))
     }
 }
 
-impl<T> AsyncWrite for ReadOnly<T> {
+impl AsyncWrite for ReadOnly {
     fn poll_write(self: Pin<&mut Self>, _cx: &mut Context, _buf: &[u8]) -> Poll<tokio::io::Result<usize>> {
         Poll::Ready(Err(IoErrorKind::BrokenPipe.into()))
     }
@@ -108,7 +108,7 @@ impl<T> AsyncWrite for ReadOnly<T> {
     }
 }
 
-impl<W: std::marker::Unpin + AsyncWrite> AsyncWrite for WriteOnly<W> {
+impl AsyncWrite for WriteOnly {
     forward!(fn poll_write(mut self: Pin<&mut Self>, cx: &mut Context, buf: &[u8]) -> Poll<tokio::io::Result<usize>>);
     forward!(fn poll_flush(mut self: Pin<&mut Self>, cx: &mut Context) -> Poll<tokio::io::Result<()>>);
     forward!(fn poll_shutdown(mut self: Pin<&mut Self>, cx: &mut Context) -> Poll<tokio::io::Result<()>>);
@@ -165,6 +165,19 @@ impl AsyncRead for Stdin {
             }
             Poll::Pending => Poll::Pending
         }
+    }
+}
+
+#[derive(Default)]
+pub(crate) struct EnclaveStdio {
+    pub stdin: Option<ReadOnly>,
+    pub stdout: Option<WriteOnly>,
+    pub stderr: Option<WriteOnly>,
+}
+
+impl fmt::Debug for EnclaveStdio {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_tuple("EnclaveStdio").field(&"..").finish()
     }
 }
 
@@ -716,29 +729,27 @@ impl EnclaveState {
         kind: EnclaveKind,
         mut event_queues: FnvHashMap<TcsAddress, PendingEvents>,
         usercall_ext: Option<Box<dyn UsercallExtension>>,
+        mut stdio: EnclaveStdio,
         threads_vector: Vec<ErasedTcs>,
         forward_panics: bool,
     ) -> Arc<Self> {
-        let mut fds = FnvHashMap::default();
+        let stdin = stdio
+            .stdin
+            .take()
+            .unwrap_or_else(|| ReadOnly(Box::pin(Stdin)));
+        let stdout = stdio
+            .stdout
+            .take()
+            .unwrap_or_else(|| WriteOnly(Box::pin(tokio::io::stdout())));
+        let stderr = stdio
+            .stderr
+            .take()
+            .unwrap_or_else(|| WriteOnly(Box::pin(tokio::io::stderr())));
 
-        fds.insert(
-            FD_STDIN,
-            Arc::new(AsyncFileDesc::stream(Box::new(ReadOnly(
-                Box::pin(Stdin)
-            )))),
-        );
-        fds.insert(
-            FD_STDOUT,
-            Arc::new(AsyncFileDesc::stream(Box::new(WriteOnly(
-                Box::pin(tokio::io::stdout()),
-            )))),
-        );
-        fds.insert(
-            FD_STDERR,
-            Arc::new(AsyncFileDesc::stream(Box::new(WriteOnly(
-                Box::pin(tokio::io::stderr()),
-            )))),
-        );
+        let mut fds = FnvHashMap::default();
+        fds.insert(FD_STDIN, Arc::new(AsyncFileDesc::stream(Box::new(stdin))));
+        fds.insert(FD_STDOUT, Arc::new(AsyncFileDesc::stream(Box::new(stdout))));
+        fds.insert(FD_STDERR, Arc::new(AsyncFileDesc::stream(Box::new(stderr))));
         let last_fd = AtomicUsize::new(fds.keys().cloned().max().unwrap() as _);
 
         let usercall_ext = usercall_ext.unwrap_or_else(|| Box::new(UsercallExtensionDefault));
@@ -1084,6 +1095,7 @@ impl EnclaveState {
         main: ErasedTcs,
         threads: Vec<ErasedTcs>,
         usercall_ext: Option<Box<dyn UsercallExtension>>,
+        stdio: EnclaveStdio,
         forward_panics: bool,
         cmd_args: Vec<Vec<u8>>,
     ) -> StdResult<(), anyhow::Error> {
@@ -1117,7 +1129,14 @@ impl EnclaveState {
                 other_reasons: vec![],
             }),
         });
-        let enclave = EnclaveState::new(kind, event_queues, usercall_ext, threads, forward_panics);
+        let enclave = EnclaveState::new(
+            kind,
+            event_queues,
+            usercall_ext,
+            stdio,
+            threads,
+            forward_panics,
+        );
 
         let main_result = EnclaveState::run(enclave.clone(), num_of_worker_threads, main_work);
 
@@ -1167,13 +1186,21 @@ impl EnclaveState {
     pub(crate) fn library(
         threads: Vec<ErasedTcs>,
         usercall_ext: Option<Box<dyn UsercallExtension>>,
+        stdio: EnclaveStdio,
         forward_panics: bool,
     ) -> Arc<Self> {
         let event_queues = FnvHashMap::with_capacity_and_hasher(threads.len(), Default::default());
 
         let kind = EnclaveKind::Library(Library {});
 
-        let enclave = EnclaveState::new(kind, event_queues, usercall_ext, threads, forward_panics);
+        let enclave = EnclaveState::new(
+            kind,
+            event_queues,
+            usercall_ext,
+            stdio,
+            threads,
+            forward_panics,
+        );
         return enclave;
     }
 
