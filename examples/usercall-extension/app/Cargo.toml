@@ -1,5 +1,5 @@
 [package]
-name = "app"
+name = "usercall-extension-app"
 version = "0.1.0"
 authors = ["Vardhan Thigle <vardhan.thigle@fortanix.com>"]
 edition = "2018"
