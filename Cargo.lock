@@ -101,7 +101,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ced66cf8fabb128c1f9aa335bdacf3009fbc4b6ad66bd42fa447f6a219736bfc"
 dependencies = [
  "openssl",
- "serde",
+ "serde 1.0.132",
  "serde_bytes",
  "serde_cbor",
  "serde_repr",
@@ -113,7 +113,7 @@ name = "aws-nitro-enclaves-cose"
 version = "0.5.0"
 source = "git+https://github.com/fortanix/aws-nitro-enclaves-cose.git?branch=raoul/crypto_abstraction_pinned#1021a397acc56d4d3ed935991f205754e5a2d2c5"
 dependencies = [
- "serde",
+ "serde 1.0.132",
  "serde_bytes",
  "serde_cbor",
  "serde_repr",
@@ -129,7 +129,7 @@ dependencies = [
  "libc",
  "log 0.4.14",
  "nix 0.20.2",
- "serde",
+ "serde 1.0.132",
  "serde_bytes",
  "serde_cbor",
 ]
@@ -277,7 +277,7 @@ dependencies = [
  "lazy_static",
  "memchr",
  "regex-automata",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -339,7 +339,7 @@ version = "0.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "363c7cfaa15f101415c4ac9e68706ca4a2277773932828b33f96e59d28c68e62"
 dependencies = [
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "toml 0.5.8",
 ]
@@ -380,7 +380,7 @@ dependencies = [
  "libc",
  "num-integer",
  "num-traits",
- "serde",
+ "serde 1.0.132",
  "time 0.1.44",
  "winapi 0.3.9",
 ]
@@ -477,7 +477,7 @@ dependencies = [
  "idna 0.1.5",
  "log 0.4.14",
  "publicsuffix",
- "serde",
+ "serde 1.0.132",
  "serde_json",
  "time 0.1.44",
  "try_from",
@@ -666,7 +666,7 @@ dependencies = [
  "csv-core",
  "itoa 0.4.6",
  "ryu",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -741,7 +741,7 @@ dependencies = [
  "num-derive 0.2.5",
  "num-traits",
  "report-test",
- "serde",
+ "serde 1.0.132",
  "serde_json",
  "sgx-isa",
  "sgxs",
@@ -811,7 +811,7 @@ dependencies = [
  "log 0.4.14",
  "nitro-cli",
  "once_cell",
- "serde",
+ "serde 1.0.132",
  "sha2 0.9.8",
  "tempdir",
  "thiserror",
@@ -825,7 +825,7 @@ dependencies = [
  "byteorder 1.3.4",
  "num-derive 0.3.3",
  "num-traits",
- "serde",
+ "serde 1.0.132",
  "serde_json",
  "sha2 0.9.8",
 ]
@@ -853,7 +853,7 @@ dependencies = [
  "hex 0.3.2",
  "log 0.4.14",
  "openssl",
- "serde",
+ "serde 1.0.132",
  "serde_cbor",
  "sha2 0.9.8",
 ]
@@ -886,7 +886,7 @@ dependencies = [
  "pkix",
  "rustc-serialize",
  "sdkms",
- "serde",
+ "serde 1.0.132",
  "serde_bytes",
  "serde_derive 1.0.132",
  "serde_json",
@@ -913,7 +913,7 @@ dependencies = [
  "lazy_static",
  "log 0.3.9",
  "mime 0.2.6",
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "serde_ignored",
  "serde_json",
@@ -934,7 +934,7 @@ dependencies = [
  "lazy_static",
  "log 0.3.9",
  "mime 0.2.6",
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "serde_ignored",
  "serde_json",
@@ -960,7 +960,7 @@ dependencies = [
  "openssl",
  "sgx-isa",
  "sgxs",
- "tokio 0.2.22",
+ "tokio 1.15.0",
 ]
 
 [[package]]
@@ -974,13 +974,13 @@ dependencies = [
  "eif_utils",
  "futures 0.3.17",
  "log 0.4.14",
- "serde",
+ "serde 1.0.132",
  "serde_json",
  "serde_yaml",
  "sha2 0.9.8",
  "shiplift",
  "tempfile",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "url 2.2.2",
 ]
 
@@ -1180,7 +1180,7 @@ dependencies = [
  "libc",
  "nix 0.13.1",
  "num_cpus",
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "sgx-isa",
  "sgxs",
@@ -1196,8 +1196,8 @@ dependencies = [
  "compiler_builtins",
  "rustc-std-workspace-alloc",
  "rustc-std-workspace-core",
- "serde",
- "vsock 0.2.4",
+ "serde 1.0.130",
+ "vsock 0.2.6",
 ]
 
 [[package]]
@@ -1209,9 +1209,9 @@ dependencies = [
  "fortanix-vme-abi",
  "log 0.4.14",
  "nix 0.22.2",
- "serde",
+ "serde 1.0.132",
  "serde_cbor",
- "vsock 0.2.4",
+ "vsock 0.2.6",
 ]
 
 [[package]]
@@ -1400,16 +1400,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "getrandom"
-version = "0.2.3"
-source = "git+https://github.com/fortanix/getrandom.git?branch=fortanixvme#cf4c6875ca03932aca760eb3a1fcfc4d4f9b47cd"
-dependencies = [
- "cfg-if 1.0.0",
- "libc",
- "wasi 0.10.0+wasi-snapshot-preview1",
-]
-
-[[package]]
 name = "gimli"
 version = "0.22.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1453,7 +1443,7 @@ dependencies = [
  "http 0.2.5",
  "indexmap",
  "slab",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "tokio-util",
  "tracing",
 ]
@@ -1476,7 +1466,7 @@ dependencies = [
  "pkix",
  "rustc-serialize",
  "sdkms",
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "serde_json",
  "url 1.7.2",
@@ -1653,7 +1643,7 @@ dependencies = [
  "itoa 1.0.1",
  "pin-project-lite 0.2.7",
  "socket2",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "tower-service",
  "tracing",
  "want 0.3.0",
@@ -1672,7 +1662,7 @@ dependencies = [
  "openssl",
  "openssl-sys",
  "parking_lot 0.11.2",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "tokio-openssl",
  "tower-layer",
 ]
@@ -1699,7 +1689,7 @@ dependencies = [
  "bytes 1.1.0",
  "hyper 0.14.20",
  "native-tls",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "tokio-native-tls",
 ]
 
@@ -1713,7 +1703,7 @@ dependencies = [
  "hex 0.4.3",
  "hyper 0.14.20",
  "pin-project 1.0.8",
- "tokio 1.14.0",
+ "tokio 1.15.0",
 ]
 
 [[package]]
@@ -1734,7 +1724,7 @@ dependencies = [
  "pkix",
  "report-test",
  "reqwest 0.11.11",
- "serde",
+ "serde 1.0.132",
  "serde-bytes-repr",
  "serde_bytes",
  "serde_json",
@@ -1742,7 +1732,7 @@ dependencies = [
  "sgx_pkix",
  "sgxs",
  "sgxs-loaders",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "url 2.2.2",
 ]
 
@@ -1798,7 +1788,7 @@ dependencies = [
  "futures-core",
  "inotify-sys",
  "libc",
- "tokio 1.14.0",
+ "tokio 1.15.0",
 ]
 
 [[package]]
@@ -1919,11 +1909,9 @@ checksum = "830d08ce1d1d941e6b30645f1a0eb5643013d835ce3779a5fc208261dbe10f55"
 
 [[package]]
 name = "libc"
-version = "0.2.104"
-source = "git+https://github.com/fortanix/libc.git?branch=fortanixvme#92233130f38b15b6217cab2669355129400fdcb7"
-dependencies = [
- "rustc-std-workspace-core",
-]
+version = "0.2.133"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0f80d65747a3e43d1596c7c5492d95d5edddaabd45a7fcdb02b95f644164966"
 
 [[package]]
 name = "libloading"
@@ -2020,7 +2008,7 @@ dependencies = [
  "chrono",
  "mbedtls-sys-auto",
  "rs-libc 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "yasna 0.2.2",
 ]
@@ -2238,7 +2226,7 @@ dependencies = [
  "mbedtls",
  "num-bigint 0.4.3",
  "pkix",
- "serde",
+ "serde 1.0.132",
  "serde_bytes",
  "serde_cbor",
  "yasna 0.4.0",
@@ -2267,7 +2255,7 @@ dependencies = [
  "once_cell",
  "openssl",
  "page_size",
- "serde",
+ "serde 1.0.132",
  "serde_cbor",
  "serde_json",
  "sha2 0.9.8",
@@ -2306,7 +2294,8 @@ dependencies = [
 [[package]]
 name = "nix"
 version = "0.20.2"
-source = "git+https://github.com/fortanix/nix.git?branch=raoul/fortanixvme_r0.20.2#6803aa84923d024a6106840acf2d12edb78825c0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f5e06129fb611568ef4e868c14b326274959aa70ff7776e9d55323531c374945"
 dependencies = [
  "bitflags 1.2.1",
  "cc",
@@ -2320,6 +2309,19 @@ name = "nix"
 version = "0.22.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d3bb9a13fa32bc5aeb64150cd3f32d6cf4c748f8f8a417cce5d2eb976a8370ba"
+dependencies = [
+ "bitflags 1.2.1",
+ "cc",
+ "cfg-if 1.0.0",
+ "libc",
+ "memoffset 0.6.4",
+]
+
+[[package]]
+name = "nix"
+version = "0.23.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9f866317acbd3a240710c63f065ffb1e4fd466259045ccb504130b7f668f35c6"
 dependencies = [
  "bitflags 1.2.1",
  "cc",
@@ -2366,7 +2368,7 @@ version = "0.1.0"
 source = "git+https://github.com/aws/aws-nitro-enclaves-nsm-api#9ddb589875baf345d085a980aa96cf3a4e480ea8"
 dependencies = [
  "log 0.4.14",
- "serde",
+ "serde 1.0.132",
  "serde_bytes",
  "serde_cbor",
 ]
@@ -2991,7 +2993,7 @@ version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a6b1679d49b24bbfe0c803429aa1874472f50d9b363131f0e89fc356b544d03"
 dependencies = [
- "getrandom 0.1.15",
+ "getrandom",
  "libc",
  "rand_chacha 0.2.2",
  "rand_core 0.5.1",
@@ -3039,7 +3041,7 @@ version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
 dependencies = [
- "getrandom 0.1.15",
+ "getrandom",
 ]
 
 [[package]]
@@ -3200,7 +3202,7 @@ dependencies = [
  "mime 0.3.16",
  "mime_guess 2.0.3",
  "native-tls",
- "serde",
+ "serde 1.0.132",
  "serde_json",
  "serde_urlencoded 0.5.5",
  "time 0.1.44",
@@ -3238,10 +3240,10 @@ dependencies = [
  "native-tls",
  "percent-encoding 2.1.0",
  "pin-project-lite 0.2.7",
- "serde",
+ "serde 1.0.132",
  "serde_json",
  "serde_urlencoded 0.7.1",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "tokio-native-tls",
  "tower-service",
  "url 2.2.2",
@@ -3282,7 +3284,8 @@ checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
 [[package]]
 name = "rustc-serialize"
 version = "0.3.24"
-source = "git+https://github.com/jethrogb/rustc-serialize.git?branch=portability#9800ee078b22e2aa9886a6751f9778fda80a16b6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dcf128d1287d2ea9d80910b5f1120d0b8eede3fbf1abe91c40d39ea7d51e6fda"
 
 [[package]]
 name = "rustc-std-workspace-alloc"
@@ -3355,7 +3358,7 @@ dependencies = [
  "hyper 0.10.16",
  "log 0.4.14",
  "rustc-serialize",
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "serde_json",
  "url 1.7.2",
@@ -3412,6 +3415,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde"
+version = "1.0.132"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8b9875c23cf305cd1fd7eb77234cbb705f21ea6a72c637a5c6db5fe4b8e7f008"
+dependencies = [
+ "serde_derive 1.0.132",
+]
+
+[[package]]
 name = "serde-bytes-repr"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3419,7 +3431,7 @@ checksum = "9eb83481bce328081ced4404f986de002bf2e08865bec386734595ebf3b2c425"
 dependencies = [
  "base64 0.13.0",
  "hex 0.4.3",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -3428,7 +3440,7 @@ version = "0.11.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "16ae07dd2f88a366f15bd0632ba725227018c69a1c8550a927324f8eb8368bb9"
 dependencies = [
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -3438,7 +3450,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2bef2ebfde456fb76bbcf9f59315333decc4fda0b2b44b420243c11e0f5ec1f5"
 dependencies = [
  "half",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -3468,7 +3480,7 @@ version = "0.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "190e9765dcedb56be63b6e0993a006c7e3b071a016a304736e4a315dc01fb142"
 dependencies = [
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -3479,7 +3491,7 @@ checksum = "ee2bb9cd061c5865d345bb02ca49fcef1391741b672b54a0bf7b679badec3142"
 dependencies = [
  "itoa 1.0.1",
  "ryu",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -3501,7 +3513,7 @@ checksum = "642dd69105886af2efd227f75a520ec9b44a820d65bc133a9131f7d229fd165a"
 dependencies = [
  "dtoa",
  "itoa 0.4.6",
- "serde",
+ "serde 1.0.132",
  "url 1.7.2",
 ]
 
@@ -3514,7 +3526,7 @@ dependencies = [
  "form_urlencoded",
  "itoa 1.0.1",
  "ryu",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -3524,7 +3536,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "edeeaecd5445109b937a3a335dc52780ca7779c4b4b7374cc6340dedfe44cfca"
 dependencies = [
  "rustversion",
- "serde",
+ "serde 1.0.132",
  "serde_with_macros",
 ]
 
@@ -3548,7 +3560,7 @@ checksum = "ae3e2dd40a7cdc18ca80db804b7f461a39bb721160a85c9a1fa30134bf3c02a5"
 dependencies = [
  "dtoa",
  "linked-hash-map",
- "serde",
+ "serde 1.0.132",
  "yaml-rust",
 ]
 
@@ -3558,7 +3570,7 @@ version = "0.4.0"
 dependencies = [
  "bitflags 1.2.1",
  "mbedtls",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -3633,7 +3645,7 @@ dependencies = [
  "regex",
  "report-test",
  "reqwest 0.9.24",
- "serde",
+ "serde 1.0.132",
  "serde_derive 1.0.132",
  "serde_yaml",
  "sgx-isa",
@@ -3689,10 +3701,10 @@ dependencies = [
  "mime 0.3.16",
  "openssl",
  "pin-project 1.0.8",
- "serde",
+ "serde 1.0.132",
  "serde_json",
  "tar",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "url 2.2.2",
 ]
 
@@ -3972,11 +3984,10 @@ dependencies = [
 
 [[package]]
 name = "tokio"
-version = "1.14.0"
+version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "70e992e41e0d2fb9f755b37446f20900f64446ef54874f40a60c78f021ac6144"
+checksum = "fbbf1c778ec206785635ce8ad57fe52b3009ae9e0c9f574a728f3049d3e55838"
 dependencies = [
- "autocfg 1.0.1",
  "bytes 1.1.0",
  "libc",
  "memchr",
@@ -4058,7 +4069,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f7d995660bd2b7f8c1568414c1126076c13fbb725c40112dc0120b78eb9b717b"
 dependencies = [
  "native-tls",
- "tokio 1.14.0",
+ "tokio 1.15.0",
 ]
 
 [[package]]
@@ -4070,7 +4081,7 @@ dependencies = [
  "futures-util",
  "openssl",
  "openssl-sys",
- "tokio 1.14.0",
+ "tokio 1.15.0",
 ]
 
 [[package]]
@@ -4155,7 +4166,7 @@ dependencies = [
  "futures-core",
  "futures-sink",
  "pin-project-lite 0.2.7",
- "tokio 1.14.0",
+ "tokio 1.15.0",
  "tracing",
 ]
 
@@ -4165,7 +4176,7 @@ version = "0.4.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "758664fc71a3a69038656bee8b6be6477d2a6c315a6b81f7081f591bffa4111f"
 dependencies = [
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -4174,7 +4185,7 @@ version = "0.5.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a31142970826733df8241ef35dc040ef98c679ab14d7c3e54d827099b3acecaa"
 dependencies = [
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -4366,7 +4377,7 @@ checksum = "e1436e58182935dcd9ce0add9ea0b558e8a87befe01c1a301e6020aeb0876363"
 dependencies = [
  "cfg-if 0.1.10",
  "rand 0.4.6",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -4376,7 +4387,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90dbc611eb48397705a6b0f6e917da23ae517e4d127123d2cf7674206627d32a"
 dependencies = [
  "rand 0.6.5",
- "serde",
+ "serde 1.0.132",
 ]
 
 [[package]]
@@ -4439,12 +4450,12 @@ dependencies = [
 
 [[package]]
 name = "vsock"
-version = "0.2.4"
-source = "git+https://github.com/fortanix/vsock-rs.git?branch=fortanixvme#95834efa8f54a3c9c07544de8a561c028bd4fbcb"
+version = "0.2.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e32675ee2b3ce5df274c0ab52d19b28789632406277ca26bffee79a8e27dc133"
 dependencies = [
- "getrandom 0.2.3",
  "libc",
- "nix 0.22.2",
+ "nix 0.23.1",
 ]
 
 [[package]]
