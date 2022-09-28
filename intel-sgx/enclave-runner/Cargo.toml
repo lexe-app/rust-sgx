@@ -35,7 +35,7 @@ nix = "0.13.0"                                  # MIT
 openssl = { version = "0.10", optional = true } # Apache-2.0
 crossbeam = "0.8"                               # MIT/Apache-2.0
 num_cpus = "1.13"                               # MIT/Apache-2.0
-tokio = { version = "=1.15.0", features = ["io-std", "net", "rt", "sync", "time"] } # MIT
+tokio = { version = "1", features = ["io-std", "net", "rt", "sync", "time"] } # MIT
 futures = "0.3"                                 # MIT/Apache-2.0
 
 [features]
