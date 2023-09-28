@@ -17,11 +17,25 @@ keywords = ["sgx", "enclave", "ftxsgx-runner"]
 categories = ["development-tools::build-utils", "command-line-utilities"]
 edition = "2018"
 
+[[bin]]
+name = "ftxsgx-elf2sgxs"
+
+[[bin]]
+name = "ftxsgx-runner-cargo"
+required-features = ["dep:aesm-client", "dep:sgxs-loaders", "dep:enclave-runner"]
+
+[[bin]]
+name = "ftxsgx-runner"
+required-features = ["dep:aesm-client", "dep:sgxs-loaders", "dep:enclave-runner"]
+
+[features]
+default = ["dep:aesm-client", "dep:sgxs-loaders", "dep:enclave-runner"]
+
 [dependencies]
 # Project dependencies
-aesm-client = { version = "0.5.0", path = "../aesm-client", features = ["sgxs"] }
-sgxs-loaders = { version = "0.3.0", path = "../sgxs-loaders" }
-enclave-runner = { version = "0.5.0", path = "../enclave-runner" }
+aesm-client = { version = "0.5.0", path = "../aesm-client", features = ["sgxs"], optional = true }
+sgxs-loaders = { version = "0.3.0", path = "../sgxs-loaders", optional = true }
+enclave-runner = { version = "0.5.0", path = "../enclave-runner", optional = true }
 sgxs = { version = "0.7.0", path = "../sgxs" }
 sgx-isa = { version = "0.4.0", path = "../sgx-isa" }
 
