@@ -1,30 +1,15 @@
 [workspace]
 members = [
-    "em-app",
-    "em-app/examples/get-certificate",
-    "examples/mem-alloc-test",
-    "examples/mem-correctness-test",
-    "fortanix-vme/aws-nitro-enclaves/eif-tools",
-    "fortanix-vme/aws-nitro-enclaves/nitro-attestation-verify",
-    "fortanix-vme/aws-nitro-enclaves/nsm",
-    "fortanix-vme/aws-nitro-enclaves/tests/nsm-test",
-    "fortanix-vme/fortanix-vme-abi",
-    "fortanix-vme/fortanix-vme-runner",
-    "fortanix-vme/tests/hello_world",
-    "fortanix-vme/tests/incoming_connection",
-    "fortanix-vme/tests/iron",
-    "fortanix-vme/tests/outgoing_connection",
-    "fortanix-vme/vme-pkix",
     "intel-sgx/aesm-client",
     "intel-sgx/async-usercalls",
     "intel-sgx/dcap-provider",
     "intel-sgx/dcap-ql-sys",
     "intel-sgx/dcap-ql",
-    "intel-sgx/dcap-retrieve-pckid",
+    #"intel-sgx/dcap-retrieve-pckid",
     "intel-sgx/enclave-runner",
     "intel-sgx/fortanix-sgx-abi",
     "intel-sgx/fortanix-sgx-tools",
-    "intel-sgx/ias",
+    #"intel-sgx/ias",
     "intel-sgx/report-test",
     "intel-sgx/sgx_pkix",
     "intel-sgx/sgx-isa",
@@ -35,22 +20,7 @@ members = [
     "rs-libc",
 ]
 exclude = [
-    "examples/backtrace_panic",
-    "examples/mpsc-crypto-mining",
-    "examples/tls",
-    "examples/unit_tests",
-    "examples/usercall-extension-bind/app",
-    "examples/usercall-extension-bind/runner",
-    "examples/usercall-extension/app",
-    "examples/usercall-extension/runner",
+    "examples",
     "intel-sgx/sgxs-loaders/tests/driver-crawler",
 ]
 resolver = "2"
-
-[patch.crates-io]
-aws-nitro-enclaves-cose_0_1 = { git = "https://github.com/fortanix/aws-nitro-enclaves-cose.git", branch = "v0.1.0-patched", package = "aws-nitro-enclaves-cose" }
-libc = { git = "https://github.com/fortanix/libc.git", branch = "fortanixvme" }
-nix = { git = "https://github.com/fortanix/nix.git", branch = "raoul/fortanixvme_r0.20.2" }
-rustc-serialize = { git = "https://github.com/fortanix/rustc-serialize.git", branch = "portability" }
-serde = { git = "https://github.com/fortanix/serde.git", branch = "master" }
-vsock = { git = "https://github.com/fortanix/vsock-rs.git", branch = "fortanixvme" }
