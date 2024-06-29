@@ -1,20 +1,20 @@
 [workspace]
 members = [
-    "em-app",
-    "em-app/examples/get-certificate",
-    "examples/mem-alloc-test",
-    "examples/mem-correctness-test",
-    "fortanix-vme/aws-nitro-enclaves/eif-tools",
-    "fortanix-vme/aws-nitro-enclaves/nitro-attestation-verify",
-    "fortanix-vme/aws-nitro-enclaves/nsm",
-    "fortanix-vme/aws-nitro-enclaves/tests/nsm-test",
-    "fortanix-vme/fortanix-vme-abi",
-    "fortanix-vme/fortanix-vme-runner",
-    "fortanix-vme/tests/hello_world",
-    "fortanix-vme/tests/incoming_connection",
-    "fortanix-vme/tests/iron",
-    "fortanix-vme/tests/outgoing_connection",
-    "fortanix-vme/vme-pkix",
+    #"em-app",
+    #"em-app/examples/get-certificate",
+    #"examples/mem-alloc-test",
+    #"examples/mem-correctness-test",
+    #"fortanix-vme/aws-nitro-enclaves/eif-tools",
+    #"fortanix-vme/aws-nitro-enclaves/nitro-attestation-verify",
+    #"fortanix-vme/aws-nitro-enclaves/nsm",
+    #"fortanix-vme/aws-nitro-enclaves/tests/nsm-test",
+    #"fortanix-vme/fortanix-vme-abi",
+    #"fortanix-vme/fortanix-vme-runner",
+    #"fortanix-vme/tests/hello_world",
+    #"fortanix-vme/tests/incoming_connection",
+    #"fortanix-vme/tests/iron",
+    #"fortanix-vme/tests/outgoing_connection",
+    #"fortanix-vme/vme-pkix",
     "intel-sgx/aesm-client",
     "intel-sgx/async-usercalls",
     "intel-sgx/dcap-provider",
@@ -47,9 +47,9 @@ exclude = [
 ]
 resolver = "2"
 
-[patch.crates-io]
-libc = { git = "https://github.com/fortanix/libc.git", branch = "fortanixvme" }
-nix = { git = "https://github.com/fortanix/nix.git", branch = "raoul/fortanixvme_r0.20.2" }
-rustc-serialize = { git = "https://github.com/fortanix/rustc-serialize.git", branch = "portability" }
-serde = { git = "https://github.com/fortanix/serde.git", branch = "master" }
-vsock = { git = "https://github.com/fortanix/vsock-rs.git", branch = "fortanixvme" }
+#[patch.crates-io]
+#libc = { git = "https://github.com/fortanix/libc.git", branch = "fortanixvme" }
+#nix = { git = "https://github.com/fortanix/nix.git", branch = "raoul/fortanixvme_r0.20.2" }
+#rustc-serialize = { git = "https://github.com/fortanix/rustc-serialize.git", branch = "portability" }
+#serde = { git = "https://github.com/fortanix/serde.git", branch = "master" }
+#vsock = { git = "https://github.com/fortanix/vsock-rs.git", branch = "fortanixvme" }
