@@ -2,8 +2,8 @@
 extern crate serde_derive;
 
 extern crate anyhow;
-#[macro_use]
-extern crate thiserror;
+// #[macro_use]
+// extern crate thiserror;
 
 use std::env;
 use std::fs::File;
