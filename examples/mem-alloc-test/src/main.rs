@@ -349,5 +349,7 @@ fn start_tests() {
 }
 
 fn main() {
+    unsafe { std::env::set_var("RUST_BACKTRACE", "full"); }
+
     start_tests();
 }
