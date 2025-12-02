@@ -13,5 +13,7 @@ num_cpus = "1.14.0"
 
 [package.metadata.fortanix-sgx]
 # heap size (in bytes), the default heap size is 0x2000000.
-heap-size=0x4000000
+heap-size=0x400_0000
+stack-size=0x20_0000
 debug=false
+threads=8
