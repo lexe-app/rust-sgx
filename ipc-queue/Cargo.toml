@@ -20,8 +20,8 @@ fortanix-sgx-abi = { version = "0.6.0", path = "../intel-sgx/fortanix-sgx-abi" }
 static_assertions = "1.1.0"
 
 [target.'cfg(not(target_env = "sgx"))'.dev-dependencies]
-futures = { version = "0.3", features = ["compat", "io-compat"] }
-tokio = { version = "1.35", features = ["full"] }
+tokio = { version = "1", features = ["io-std", "net", "rt", "sync", "time"] } # MIT
+futures = "0.3"                                 # MIT/Apache-2.0
 
 [package.metadata.fortanix-sgx]
 # set number of threads so tests can run properly
